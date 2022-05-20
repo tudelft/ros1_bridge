@@ -15,8 +15,7 @@ find_package(rmw REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rmw_implementation_cmake REQUIRED)
-find_package(std_msgs REQUIRED)
-find_package(px4_msgs REQUIRED)
+find_package(custom_interfaces REQUIRED)
 
 # find ROS 1 packages
 set(cmake_extras_files cmake/find_ros1_package.cmake cmake/find_ros1_interface_packages.cmake)
@@ -174,6 +173,9 @@ custom_executable(loihi_bridge_network_flow "src/loihi_bridge_network_flow.cpp"
 custom_executable(loihi_bridge_network_control "src/loihi_bridge_network_control.cpp"
   ROS1_DEPENDENCIES
   TARGET_DEPENDENCIES "std_msgs")
+custom_executable(setpoint_loihi_bridge "src/setpoint_loihi_bridge.cpp"
+  ROS1_DEPENDENCIES
+  TARGET_DEPENDENCIES "std_msgs" "custom_interfaces")
 
 add_library(${PROJECT_NAME} SHARED
   "src/builtin_interfaces_factories.cpp"
