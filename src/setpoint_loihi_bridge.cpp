@@ -36,7 +36,7 @@ ros::Publisher pub;
 
 void setpointCallback(const custom_interfaces::msg::UserCommand::SharedPtr ros2_msg)
 {
-  if (ros2_msg->sp_type == custom_interfaces::msg::UserCommand::SV_SP_ATT) {
+  if (ros2_msg->mode > 0) {
     std_msgs::Float64MultiArray ros1_msg;
     for (int i = 0; i < 3; i++) {
       ros1_msg.data.push_back(ros2_msg->sp[i]);
